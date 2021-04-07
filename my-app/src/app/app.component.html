@@ -1,0 +1,19 @@
+<div class = "header">
+  <h1> {{title}} </h1>
+  <label> Add Todo Task: </label>
+  <input type = "text" placeholder="what you want to do?" [(ngModel)]="todo" (keyup.enter)="addTodo()"> 
+    <button (click) ="addTodo()">Add</button>
+    <button (click)= "cancelTodo()">Cancel</button>
+    <ul> Typing: {{ todo }}</ul>
+  <h2>My Current Task </h2>
+  <div *ngIf="shownone; else elseblock"> None </div>
+  <ng-template #elseblock>
+  <ul>
+      <li *ngFor="let todo of todos; let i = index"> {{ todo | titlecase }} 
+        <button  (click)="removeTodo (i)">Remove</button>
+        <button>Edit</button>
+      </li>
+      <button (click)= "clearall()">Clear All</button>
+    </ul>
+  </ng-template>
+</div>
