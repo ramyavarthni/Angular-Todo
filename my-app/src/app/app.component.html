@@ -6,12 +6,12 @@
     <button (click)= "cancelTodo()">Cancel</button>
     <ul> Typing: {{ todo }}</ul>
   <h2>My Current Task </h2>
-  <div *ngIf="shownone; else elseblock"> None </div>
+  <div *ngIf="shownone; then elseblock"> None </div>
   <ng-template #elseblock>
   <ul>
-      <li *ngFor="let todo of todos; let i = index"> {{ todo | titlecase }} 
-        <button  (click)="removeTodo (i)">Remove</button>
-        <button>Edit</button>
+      <li *ngFor="let todo of todos; let i = index">
+       {{i + 1}}. {{ todo | titlecase }} 
+      <button  (click)="removeTodo (i)">Remove</button>
       </li>
       <button (click)= "clearall()">Clear All</button>
     </ul>

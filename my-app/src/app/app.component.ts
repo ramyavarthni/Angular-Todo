@@ -8,13 +8,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'TODO LIST'; 
 
-  shownone =  false;
+  shownone:boolean =  true
 
-  objDate = Date.now();
+  elseblock:boolean = true
 
-  todo = '';
+  todo = ''
 
-  todos = ['welcome Angular js']
+  todos:string[] = []
 
   addTodo() {
     console.log('todo:' + this.todo)
