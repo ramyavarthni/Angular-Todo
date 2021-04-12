@@ -1,19 +1,30 @@
 <div class = "header">
   <h1> {{title}} </h1>
+  <div v-if = "!isEditing">
   <label> Add Todo Task: </label>
   <input type = "text" placeholder="what you want to do?" [(ngModel)]="todo" (keyup.enter)="addTodo()"> 
     <button (click) ="addTodo()">Add</button>
     <button (click)= "cancelTodo()">Cancel</button>
     <ul> Typing: {{ todo }}</ul>
+  </div>
   <h2>My Current Task </h2>
-  <div *ngIf="shownone; then elseblock"> None </div>
+  <div *ngIf="shownone; else elseblock"> None </div>
   <ng-template #elseblock>
   <ul>
+    <table align="center">
+      <tr>
       <li *ngFor="let todo of todos; let i = index">
-       {{i + 1}}. {{ todo | titlecase }} 
-      <button  (click)="removeTodo (i)">Remove</button>
+        <td>
+          <mat-form-field class="example-full-width">
+          <input matInput type="text" [value]= "todo | titlecase" isEditing="true" (keyup.enter)="editTodo"> 
+        </mat-form-field>
+        </td>
+      <td><button  (click)="removeTodo (i)">Remove</button></td>
+      <td><button (click)="editTodo (i)">Edit</button></td>
       </li>
+    </tr>
       <button (click)= "clearall()">Clear All</button>
+    </table>
     </ul>
   </ng-template>
 </div>

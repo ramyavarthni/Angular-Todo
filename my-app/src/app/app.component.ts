@@ -8,10 +8,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'TODO LIST'; 
 
-  shownone:boolean =  true
+  shownone:boolean =  false
+
+  selectedtodos = null
 
   elseblock:boolean = true
 
+  isEditing = false
+    
   todo = ''
 
   todos:string[] = []
@@ -21,8 +25,11 @@ export class AppComponent {
     this.todos.push(this.todo)
     this.todo = ''
   }
+  editTodo (index:number) {
+    this.todos.splice(index, 1,this.todo)
+  }
   removeTodo (index:number) {
-    this.todos.splice(index, 1)
+    this.todos.splice(index)
   }
   cancelTodo () {
     this.todo = ''
