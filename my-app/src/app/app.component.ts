@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import {  } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,30 +7,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+
   title = 'TODO LIST'; 
 
-  shownone:boolean =  false
 
-  selectedtodos = null
-
-  elseblock:boolean = true
-
-  isEditing = false
-    
-  todo = ''
+  selectedIndex = '';
+  todo = '';
 
   todos:string[] = []
-
+  
   addTodo() {
+    if (this.todo.length > 0) {
     console.log('todo:' + this.todo)
     this.todos.push(this.todo)
     this.todo = ''
+    }
   }
-  editTodo (index:number) {
-    this.todos.splice(index, 1,this.todo)
+  Edit (todo:'',index:'') {
+    this.todo = todo
+    this.selectedIndex = index
   }
-  removeTodo (index:number) {
-    this.todos.splice(index)
+  updateTodo () {   
+  console.log(this.selectedIndex, 1, this.todo)  
+  this.todos.splice(this.selectedIndex,1,this.todo)
+  this.todo = ''
+  }
+  Delete(index:number) {
+    console.log(index,1)
+   this.todos.splice(index, 1)
   }
   cancelTodo () {
     this.todo = ''
